@@ -19,19 +19,32 @@ commands=[
             "php artisan key:generate",
             "php artisan migrate",
 ]
-
+programsToCheck = set(element.split()[0] for element in commands)
 artisan_serve="php artisan serve"
 
-#end 
+#end vars
+
+#func
+
+def program_installed(program_name):
+    no_output="> /dev/null"
+    command = f"which {program_name} {no_output}"
+    return os.system(command) == 0
 
 for file in LaravelCrucialFiles:
     #Check if files exist
     if not (os.path.exists(file)):
         print(f"In order for LARAVEL to work properly,the project folder needs to have several files, including the following: {file}")
-        exit(2)
+        exit(1)
+
+for program in programsToCheck:
+    if not program_installed(program):
+        print(f"In order for LARAVEL to work properly, Some programs must be installed")
+        print(f"{program} is not installed")
+        exist(1)
 
 for command in commands:
-#execute commands
+    #execute commands
     return_value = os.system(command)
     if return_value == 0:
         continue
@@ -48,6 +61,6 @@ for command in commands:
             break
         elif opt == "n":
             print("Bye ...")
-            exit(2)
+            exit(1)
         else:
             print(f"unknown command : {opt} ")
