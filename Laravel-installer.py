@@ -1,7 +1,7 @@
 try:
     import os
 except ImportError:
-    print("In order for LARAVEL to work properly this script requires : 'os' module")
+    print("In order for this script to work properly the 'os' module required")
     raise SystemExit(1)
 
 #var 
@@ -39,7 +39,7 @@ for file in LaravelCrucialFiles:
 
 for program in programsToCheck:
     if not program_installed(program):
-        print(f"In order for LARAVEL to work properly, Some programs must be installed")
+        print(f"In order for LARAVEL to work properly, Some programs must be installed :")
         print(f"{program} is not installed")
         exist(1)
 
